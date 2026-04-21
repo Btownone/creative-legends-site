@@ -623,6 +623,169 @@
       .hero-content { padding: 0 24px 60px; }
       .stats-bar { flex-wrap: wrap; }
       .stat-item { flex: 1 1 50%; border-bottom: 1px solid #2a2a2a; }
+    }
+
+    /* ─── TRUST STRIP ─── */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: var(--black);
+    }
+    .trust-item {
+      padding: 28px 24px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.55;
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-item strong { color: var(--white); font-weight: 700; display: block; margin-bottom: 2px; }
+    @media (max-width: 768px) {
+      .trust-strip { grid-template-columns: repeat(2, 1fr); }
+      .trust-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .trust-item:nth-child(2) { border-right: none; }
+    }
+
+    /* ─── CLIENT TESTIMONIAL QUOTES ─── */
+    .client-quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .client-quote {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 32px;
+      text-align: left;
+    }
+    .client-quote p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+      margin: 0 0 18px;
+    }
+    .client-quote cite {
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    @media (max-width: 900px) { .client-quotes { grid-template-columns: 1fr; } }
+
+    /* ─── FEATURED MERCH GRID ─── */
+    .featured-merch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 48px auto 40px;
+      max-width: 1100px;
+      min-height: 320px;
+    }
+    .merch-card {
+      background: var(--white);
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--black);
+      display: block;
+      transition: transform 0.4s;
+    }
+    .merch-card:hover { transform: translateY(-4px); }
+    .merch-card-img { aspect-ratio: 1/1; background: #f2f2f2; overflow: hidden; }
+    .merch-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .merch-card-info { padding: 20px 22px; text-align: left; }
+    .merch-card-name {
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .merch-card-price { font-size: 14px; color: #666; letter-spacing: 1px; }
+    .merch-loading {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+    @media (max-width: 900px) { .featured-merch-grid { grid-template-columns: 1fr; } }
+
+    /* ─── BOOK A SESSION FORM ─── */
+    .contact-lines {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin: 40px 0 8px;
+    }
+    .contact-phone {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: 4px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .contact-phone:hover { color: var(--accent); }
+    .book-form { max-width: 820px; margin: 48px auto 0; padding: 0 24px; }
+    .book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .book-field { display: flex; flex-direction: column; gap: 6px; }
+    .book-field-full { grid-column: 1 / -1; }
+    .book-field span {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      font-weight: 600;
+    }
+    .book-field input,
+    .book-field select,
+    .book-field textarea {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      padding: 14px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .book-field input:focus,
+    .book-field select:focus,
+    .book-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255,255,255,0.05);
+    }
+    .book-field textarea { resize: vertical; min-height: 120px; }
+    .book-submit {
+      display: block;
+      margin: 32px auto 0;
+      padding: 20px 52px;
+      font-size: 13px;
+      letter-spacing: 3px;
+      border: none;
+      cursor: pointer;
+    }
+    .book-note {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.45);
+    }
+    @media (max-width: 700px) { .book-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
       #contact { padding: 80px 24px; }
       .social-links { flex-direction: column; align-items: center; }
@@ -683,6 +846,14 @@
       <div class="stat-num">∞</div>
       <div class="stat-label">Content That Means Something</div>
     </div>
+  </div>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item"><strong>Award-Winning Team</strong>Recognized campaigns & films</div>
+    <div class="trust-item"><strong>Fully Insured</strong>On-set liability covered</div>
+    <div class="trust-item"><strong>San Diego Based</strong>Travel-ready nationwide</div>
+    <div class="trust-item"><strong>Rush Delivery</strong>Available on request</div>
   </div>
 
   <!-- MARQUEE STRIP 1 -->
@@ -923,6 +1094,21 @@
       <div class="client-tile reveal reveal-delay-4"><span>EVAN HAUTH</span></div>
       <div class="client-tile reveal"><span>MXD SGNLS</span></div>
     </div>
+
+    <div class="client-quotes">
+      <div class="client-quote reveal">
+        <p>"I've worked with tons of photographers and videographers and there is no one like Bridget. She can capture the emotion of whatever's going on."</p>
+        <cite>— Brianna Rose · Embodiment + Business Coach</cite>
+      </div>
+      <div class="client-quote reveal reveal-delay-1">
+        <p>"The Creative Legends team didn't just shoot content — they understood our brand from day one. The footage moved product."</p>
+        <cite>— Brand Lead, Urbody</cite>
+      </div>
+      <div class="client-quote reveal reveal-delay-2">
+        <p>"Fast, calm on set, and the final cut hit every note we wanted. We've already booked them again."</p>
+        <cite>— Shola Richards</cite>
+      </div>
+    </div>
   </section>
 
   <!-- MERCH -->
@@ -932,8 +1118,11 @@
     <p class="section-sub reveal" style="margin:0 auto 48px;">
       Premium print-on-demand apparel for creators, clients, and fans of Creative Legends Co. — tees, hoodies, hats, and more.
     </p>
+    <div id="featuredMerch" class="featured-merch-grid reveal">
+      <div class="merch-loading">LOADING FEATURED MERCH…</div>
+    </div>
     <a href="https://automatedmerch.onrender.com/creative-legends/shop" class="btn-primary reveal" style="font-size:15px;padding:20px 52px;letter-spacing:3px;">
-      Shop Merch →
+      Shop All Merch →
     </a>
   </section>
 
@@ -952,12 +1141,59 @@
     <p class="section-sub reveal" style="text-align:center;">
       Time to shine a spotlight on your epic story. Partner with us for content that's not just memorable — but downright legendary.
     </p>
-    <a href="mailto:hello@creativelegendsco.com" class="contact-email reveal">
-      HELLO@CREATIVELEGENDSCO.COM
-    </a>
-    <div style="text-align:center;" class="reveal">
-      <a href="#contact" class="btn-primary">Book a Session →</a>
+    <div class="contact-lines reveal">
+      <a href="mailto:hello@creativelegendsco.com" class="contact-email">HELLO@CREATIVELEGENDSCO.COM</a>
     </div>
+
+    <!-- BOOK A SESSION FORM -->
+    <form id="bookForm" class="book-form reveal" novalidate>
+      <div class="book-grid">
+        <label class="book-field">
+          <span>Your name</span>
+          <input type="text" name="name" required autocomplete="name">
+        </label>
+        <label class="book-field">
+          <span>Email</span>
+          <input type="email" name="email" required autocomplete="email">
+        </label>
+        <label class="book-field">
+          <span>Company / brand</span>
+          <input type="text" name="company" autocomplete="organization">
+        </label>
+        <label class="book-field">
+          <span>Project type</span>
+          <select name="type">
+            <option>Brand photo shoot</option>
+            <option>Video / commercial</option>
+            <option>Social content package</option>
+            <option>Event coverage</option>
+            <option>Creative direction</option>
+            <option>Something else</option>
+          </select>
+        </label>
+        <label class="book-field">
+          <span>Budget range</span>
+          <select name="budget">
+            <option>Under $2,500</option>
+            <option>$2,500 – $5,000</option>
+            <option>$5,000 – $10,000</option>
+            <option>$10,000+</option>
+            <option>Let's talk</option>
+          </select>
+        </label>
+        <label class="book-field">
+          <span>Timeline</span>
+          <input type="text" name="timeline" placeholder="e.g. 4 weeks / rush">
+        </label>
+        <label class="book-field book-field-full">
+          <span>Tell us about the project</span>
+          <textarea name="details" rows="5" placeholder="The story, the audience, what success looks like..."></textarea>
+        </label>
+      </div>
+      <button type="submit" class="btn-primary book-submit">Send Project Brief →</button>
+      <p class="book-note">Goes straight to Bridget's inbox. Usually replies same day.</p>
+    </form>
+
     <div class="social-links reveal" style="margin-top:64px;">
       <a href="https://www.instagram.com/creativelegends.co/" target="_blank" rel="noopener" class="social-link">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -992,6 +1228,74 @@
       });
     }, { threshold: 0.12 });
     revealEls.forEach(el => observer.observe(el));
+
+    // ─── FEATURED MERCH FETCH (tRPC products.list) ───
+    // TODO: Replace 0 with the Creative Legends templateId from the automatedmerch DB.
+    // Ask Bernardo: SELECT id FROM charterTemplates WHERE slug = 'creative-legends';
+    const CREATIVE_LEGENDS_TEMPLATE_ID = 0;
+    (async () => {
+      const grid = document.getElementById('featuredMerch');
+      if (!grid) return;
+      if (!CREATIVE_LEGENDS_TEMPLATE_ID) {
+        grid.innerHTML = '<div class="merch-loading">Browse the full shop →</div>';
+        return;
+      }
+      try {
+        const input = encodeURIComponent(JSON.stringify({ json: { templateId: CREATIVE_LEGENDS_TEMPLATE_ID } }));
+        const res = await fetch(`https://automatedmerch.onrender.com/api/trpc/products.list?input=${input}`);
+        if (!res.ok) throw new Error(`status ${res.status}`);
+        const json = await res.json();
+        const products = json?.result?.data?.json || [];
+        const picks = products.filter(p => p && (p.images?.length || p.imageUrl)).slice(0, 3);
+        if (!picks.length) {
+          grid.innerHTML = '<div class="merch-loading">Shop launches soon — stay tuned.</div>';
+          return;
+        }
+        grid.innerHTML = picks.map(p => {
+          const img = (p.images && p.images[0]) || p.imageUrl || '';
+          const price = typeof p.basePrice === 'number' ? `$${(p.basePrice / 100).toFixed(0)}` : '';
+          const slug = p.slug || p.id;
+          const name = (p.name || 'Merch').toUpperCase();
+          return `
+            <a href="https://automatedmerch.onrender.com/creative-legends/product/${slug}" class="merch-card">
+              <div class="merch-card-img"><img src="${img}" alt="${name}" loading="lazy"></div>
+              <div class="merch-card-info">
+                <div class="merch-card-name">${name}</div>
+                <div class="merch-card-price">${price}</div>
+              </div>
+            </a>`;
+        }).join('');
+      } catch (err) {
+        console.warn('featured merch load failed', err);
+        grid.innerHTML = '<div class="merch-loading">Browse the full shop →</div>';
+      }
+    })();
+
+    // ─── BOOK A SESSION FORM (mailto fallback) ───
+    const bookForm = document.getElementById('bookForm');
+    if (bookForm) {
+      bookForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const f = bookForm;
+        const name = f.name.value.trim();
+        const email = f.email.value.trim();
+        if (!name || !email) { f.reportValidity(); return; }
+        const subject = encodeURIComponent(`New project inquiry — ${name}`);
+        const bodyLines = [
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Company: ${f.company.value.trim() || '—'}`,
+          `Project type: ${f.type.value}`,
+          `Budget: ${f.budget.value}`,
+          `Timeline: ${f.timeline.value.trim() || '—'}`,
+          '',
+          'Project details:',
+          f.details.value.trim() || '(none provided)',
+        ];
+        const body = encodeURIComponent(bodyLines.join('\n'));
+        window.location.href = `mailto:hello@creativelegendsco.com?subject=${subject}&body=${body}`;
+      });
+    }
   </script>
 </body>
 </html>
