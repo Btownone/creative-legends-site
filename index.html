@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Legends Co. — San Diego Content Creation Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #080808;
+      --white: #f5f5f5;
+      --accent: #c084fc;
+      --gray: #1a1a1a;
+      --mid: #888;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 48px;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.9) 0%, transparent 100%);
+      transition: background 0.3s;
+    }
+    nav.scrolled { background: rgba(8,8,8,0.97); }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 4px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      color: rgba(245,245,245,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--black) !important;
+      padding: 10px 24px;
+      font-weight: 700 !important;
+      letter-spacing: 1.5px !important;
+      transition: opacity 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.85; color: var(--black) !important; }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1920&q=80') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(8,8,8,0.3) 0%,
+        rgba(8,8,8,0.15) 40%,
+        rgba(8,8,8,0.75) 80%,
+        rgba(8,8,8,1) 100%
+      );
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 48px 80px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(64px, 10vw, 140px);
+      line-height: 0.92;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+    .hero-title span { color: var(--accent); }
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: rgba(245,245,245,0.75);
+      max-width: 520px;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--black);
+      padding: 16px 36px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary {
+      display: inline-block;
+      border: 1px solid rgba(245,245,245,0.4);
+      color: var(--white);
+      padding: 16px 36px;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--gray);
+      display: flex;
+      justify-content: center;
+      border-top: 1px solid #2a2a2a;
+    }
+    .stat-item {
+      flex: 1;
+      max-width: 280px;
+      padding: 40px 32px;
+      text-align: center;
+      border-right: 1px solid #2a2a2a;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 52px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 500;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    section { padding: 120px 48px; }
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 72px);
+      letter-spacing: 2px;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .section-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(245,245,245,0.6);
+      max-width: 560px;
+      line-height: 1.8;
+    }
+
+    /* ─── MARQUEE STRIPS ─── */
+    .marquee-track {
+      overflow: hidden;
+      padding: 3px 0;
+      background: var(--black);
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+    }
+    .marquee-inner {
+      display: flex;
+      gap: 4px;
+      width: max-content;
+      animation: marquee-fwd 42s linear infinite;
+    }
+    .marquee-track.reverse .marquee-inner { animation: marquee-rev 58s linear infinite; }
+    .marquee-inner:hover { animation-play-state: paused; }
+    @keyframes marquee-fwd { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes marquee-rev { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+    .marquee-img {
+      flex-shrink: 0;
+      width: 320px;
+      height: 220px;
+      object-fit: cover;
+      filter: brightness(0.72) grayscale(0.1);
+      transition: filter 0.4s;
+      display: block;
+    }
+    .marquee-img:hover { filter: brightness(1) grayscale(0); }
+
+    /* ─── WORK / PROJECTS ─── */
+    #work { background: var(--black); }
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 64px;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 4px;
+    }
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #111;
+    }
+    .project-card:nth-child(1) { grid-column: span 8; aspect-ratio: 16/9; }
+    .project-card:nth-child(2) { grid-column: span 4; }
+    .project-card:nth-child(3) { grid-column: span 4; }
+    .project-card:nth-child(4) { grid-column: span 4; }
+    .project-card:nth-child(5) { grid-column: span 4; }
+    .project-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease, filter 0.4s ease;
+      filter: brightness(0.75);
+    }
+    .project-card:hover img { transform: scale(1.05); filter: brightness(0.5); }
+    .project-info {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+      transition: background 0.3s;
+    }
+    .project-card:hover .project-info {
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 100%);
+    }
+    .project-tag {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .project-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 1px;
+      line-height: 1.1;
+    }
+    .project-desc {
+      font-size: 13px;
+      color: rgba(245,245,245,0.6);
+      margin-top: 8px;
+      font-weight: 300;
+      max-width: 360px;
+      line-height: 1.5;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .project-card:hover .project-desc { opacity: 1; transform: translateY(0); }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--black); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+    .service-card {
+      background: var(--gray);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover { background: #1f1f1f; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 72px;
+      color: rgba(192,132,252,0.1);
+      line-height: 1;
+      margin-bottom: 24px;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-num { color: rgba(192,132,252,0.2); }
+    .service-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .service-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(245,245,245,0.55);
+      line-height: 1.8;
+    }
+
+    /* ─── PRICING ─── */
+    #pricing { background: var(--gray); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+    .pricing-card {
+      background: #111;
+      padding: 48px 40px;
+      position: relative;
+      border-top: 3px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .pricing-card:hover { border-top-color: var(--accent); }
+    .pricing-card.featured { border-top-color: var(--accent); background: #141414; }
+    .pricing-type {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+    .pricing-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(245,245,245,0.55);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    /* ─── ABOUT / FOUNDER ─── */
+    #about { background: var(--gray); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85) contrast(1.05);
+    }
+    .about-img-accent {
+      position: absolute;
+      top: -16px; left: -16px; right: 40px; bottom: 40px;
+      border: 2px solid var(--accent);
+      z-index: -1;
+    }
+    .about-text .section-sub { max-width: 100%; margin-bottom: 32px; }
+    .about-list { list-style: none; margin-top: 32px; }
+    .about-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid #2e2e2e;
+      font-size: 14px;
+      color: rgba(245,245,245,0.7);
+    }
+    .about-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── CREW ─── */
+    #crew { background: var(--black); }
+    .crew-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin-top: 64px;
+    }
+    .crew-card {
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+    .crew-card img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.7) grayscale(0.2);
+      transition: filter 0.4s, transform 0.5s;
+    }
+    .crew-card:hover img { filter: brightness(0.5) grayscale(0); transform: scale(1.04); }
+    .crew-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+    }
+    .crew-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 1px;
+      line-height: 1.1;
+    }
+    .crew-role {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* ─── CLIENTS ─── */
+    #clients { background: var(--gray); text-align: center; }
+    .clients-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px;
+      max-width: 900px;
+      margin: 60px auto 0;
+    }
+    .client-tile {
+      background: #111;
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+    }
+    .client-tile span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 3px;
+      color: rgba(245,245,245,0.35);
+      transition: color 0.3s;
+    }
+    .client-tile:hover span { color: var(--white); }
+
+    /* ─── TESTIMONIAL ─── */
+    #testimonial {
+      background: var(--accent);
+      padding: 100px 48px;
+      text-align: center;
+    }
+    .testimonial-quote {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 3.5vw, 52px);
+      color: var(--black);
+      max-width: 900px;
+      margin: 0 auto 32px;
+      line-height: 1.15;
+      letter-spacing: 1px;
+    }
+    .testimonial-attr {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(8,8,8,0.6);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--black);
+      text-align: center;
+      padding: 140px 48px;
+    }
+    #contact .section-title { font-size: clamp(48px, 7vw, 100px); margin-bottom: 16px; }
+    #contact .section-sub { margin: 0 auto 48px; text-align: center; }
+    .contact-email {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(18px, 2.5vw, 32px);
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 3px;
+      display: block;
+      margin-bottom: 48px;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.7; }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #333;
+      padding: 14px 28px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgba(245,245,245,0.6);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--gray);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #222;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 4px;
+      color: rgba(245,245,245,0.4);
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(245,245,245,0.3);
+      letter-spacing: 1px;
+    }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-card:nth-child(1),
+      .project-card:nth-child(2),
+      .project-card:nth-child(3),
+      .project-card:nth-child(4),
+      .project-card:nth-child(5) { grid-column: span 1; aspect-ratio: 16/9; }
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .services-grid, .pricing-grid { grid-template-columns: 1fr; }
+      .crew-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      section { padding: 80px 24px; }
+      .hero-content { padding: 0 24px 60px; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item { flex: 1 1 50%; border-bottom: 1px solid #2a2a2a; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+      #contact { padding: 80px 24px; }
+      .social-links { flex-direction: column; align-items: center; }
+      .crew-grid { grid-template-columns: repeat(2, 1fr); }
+      .marquee-img { width: 220px; height: 150px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">CREATIVE LEGENDS</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#crew">The Crew</a></li>
+      <li><a href="#clients">Clients</a></li>
+      <li><a href="#merch">Merch</a></li>
+      <li><a href="https://automatedmerch.onrender.com/creative-legends/shop" class="nav-cta">Shop Now</a></li>
+      <li><a href="#contact" style="border:1px solid rgba(245,245,245,0.3);padding:10px 20px;font-weight:600;letter-spacing:1.5px;font-size:13px;text-transform:uppercase;">Book a Session</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">San Diego, CA · Photography · Film · Social</p>
+      <h1 class="hero-title">LEAVE YOUR<br/><span>LEGACY.</span></h1>
+      <p class="hero-sub">
+        Crafting visuals that bring your vision to life and leave an everlasting impact — from concept to camera to your feed.
+      </p>
+      <div class="hero-buttons">
+        <a href="#work" class="btn-primary">See the Work</a>
+        <a href="#contact" class="btn-secondary">Book a Session →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item reveal">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Disciplines: Film · Photo · Social</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Creatives on the Team</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-num">SD</div>
+      <div class="stat-label">Based in San Diego · Open to Travel</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Content That Means Something</div>
+    </div>
+  </div>
+
+  <!-- MARQUEE STRIP 1 -->
+  <div class="marquee-track">
+    <div class="marquee-inner">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1604871000636-074fa5117945?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=640&q=80" alt="">
+      <!-- duplicate for seamless loop -->
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1604871000636-074fa5117945?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=640&q=80" alt="">
+    </div>
+  </div>
+
+  <!-- WORK / PROJECTS -->
+  <section id="work">
+    <div class="projects-header">
+      <div>
+        <p class="section-eyebrow">Selected Projects</p>
+        <h2 class="section-title reveal">CONTENT THAT<br/>MEANS SOMETHING.</h2>
+      </div>
+      <p class="section-sub reveal" style="max-width:380px;">
+        From lifestyle campaigns to long-form docs — every project is built to make people feel something and keep them coming back.
+      </p>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80" alt="Keynote Speakers" loading="lazy" />
+        <div class="project-info">
+          <span class="project-tag">Keynote · Speaking</span>
+          <h3 class="project-name">KEYNOTE SPEAKERS</h3>
+          <p class="project-desc">On-stage presence captured with precision — making every moment feel as powerful as it sounded.</p>
+        </div>
+      </div>
+      <div class="project-card" style="aspect-ratio:1;">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80" alt="Portrait Editorial" loading="lazy" />
+        <div class="project-info">
+          <span class="project-tag">Photography · Portrait</span>
+          <h3 class="project-name">PORTRAIT & EDITORIAL</h3>
+          <p class="project-desc">Authentic portraits that showcase who you actually are — no stiffness, all personality.</p>
+        </div>
+      </div>
+      <div class="project-card" style="aspect-ratio:1;">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&q=80" alt="Brand Content" loading="lazy" />
+        <div class="project-info">
+          <span class="project-tag">Brand · Commercial</span>
+          <h3 class="project-name">BRAND CONTENT</h3>
+          <p class="project-desc">High-impact photo and video built for brands that have something to say.</p>
+        </div>
+      </div>
+      <div class="project-card" style="aspect-ratio:1;">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Event Coverage" loading="lazy" />
+        <div class="project-info">
+          <span class="project-tag">Events · Coverage</span>
+          <h3 class="project-name">EVENT COVERAGE</h3>
+          <p class="project-desc">Full production for launches, activations, and brand events — nothing missed.</p>
+        </div>
+      </div>
+      <div class="project-card" style="aspect-ratio:1;">
+        <img src="https://images.unsplash.com/photo-1604871000636-074fa5117945?w=600&q=80" alt="Weddings" loading="lazy" />
+        <div class="project-info">
+          <span class="project-tag">Weddings · Love Stories</span>
+          <h3 class="project-name">WEDDINGS</h3>
+          <p class="project-desc">The moments that matter forever — captured with warmth, presence, and intention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE STRIP 2 — reverse -->
+  <div class="marquee-track reverse">
+    <div class="marquee-inner">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1604871000636-074fa5117945?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=640&q=80" alt="">
+      <!-- duplicate -->
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1604871000636-074fa5117945?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&q=80" alt="">
+      <img class="marquee-img" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=640&q=80" alt="">
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-eyebrow">What We Do</p>
+    <h2 class="section-title reveal">WE HELP YOU<br/>LEAVE YOUR IMPACT.</h2>
+    <p class="section-sub reveal">Bringing the fun and ease back into content creation. You've got the vision — we've got the team and the tools to bring it to life.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <h3 class="service-name">Content Creation</h3>
+        <p class="service-desc">Full in-house production: ideating, planning, styling, photo & video, and final editing. Short-form and long-form — TikTok, Reels, YouTube, events, documentaries, music, and podcasts.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">02</div>
+        <h3 class="service-name">Creative Direction</h3>
+        <p class="service-desc">Content ideation sessions to get crystal clear on how you want your vision to be seen and heard. From mood boards and storyboards to on-set art direction — we make sure every frame counts.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">03</div>
+        <h3 class="service-name">Content Strategy</h3>
+        <p class="service-desc">Your success is our success. Learn how to set yourself up for social success and create content that feels effortless and authentic. We'll map out the path from vision to consistent, impactful content.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <p class="section-eyebrow">Ways to Work With Us</p>
+    <h2 class="section-title reveal">FIND YOUR FIT.</h2>
+    <p class="section-sub reveal">Every project is different. Pick the format that works for you — or reach out and we'll build something custom.</p>
+    <div class="pricing-grid" style="margin-top:64px;">
+      <div class="pricing-card reveal">
+        <div class="pricing-type">Hourly</div>
+        <p class="pricing-desc">Perfect for focused shoots, quick turnarounds, or adding a creative eye to your existing production.</p>
+        <a href="#contact" class="btn-secondary" style="font-size:12px;padding:12px 28px;">Get a Quote →</a>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-1">
+        <div class="pricing-type">Day Rate</div>
+        <p class="pricing-desc">A full day of production — ideal for launch campaigns, event coverage, or getting a lot of content in one session.</p>
+        <a href="#contact" class="btn-primary" style="font-size:12px;padding:12px 28px;">Get a Quote →</a>
+      </div>
+      <div class="pricing-card reveal reveal-delay-2">
+        <div class="pricing-type">Monthly Membership</div>
+        <p class="pricing-desc">Consistent, ongoing content for brands and creators who want a reliable creative team in their corner every month.</p>
+        <a href="#contact" class="btn-secondary" style="font-size:12px;padding:12px 28px;">Get a Quote →</a>
+      </div>
+    </div>
+    <p class="section-sub reveal" style="margin-top:32px;font-size:14px;">Prices vary per project based on scope, location, and deliverables. Reach out and let's build your custom package.</p>
+  </section>
+
+  <!-- ABOUT / FOUNDER -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-accent"></div>
+        <img
+          class="about-img"
+          src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80"
+          alt="Bridget Farhat — Founder of Creative Legends Co."
+        />
+      </div>
+      <div class="about-text">
+        <p class="section-eyebrow">The Founder</p>
+        <h2 class="section-title reveal">HI, I'M<br/>BRIDGET.</h2>
+        <p class="section-sub reveal">
+          Content Queen and Founder of Creative Legends Co. — a San Diego-based creative studio built on the belief that creating content should feel effortless when you have a clear vision and the right team behind you.
+        </p>
+        <p class="section-sub reveal" style="margin-top:16px;">
+          I was guided by a friend many years ago to pick up a camera and learn the skill. Since then I've been on a mission to create cool things with cool people — using every creative gift to help others spread a positive light in this world.
+        </p>
+        <ul class="about-list reveal">
+          <li>San Diego–based, open to travel for the right project</li>
+          <li>Short-form & long-form content across all major platforms</li>
+          <li>Photography, film, social strategy under one roof</li>
+          <li>Known for getting you a lot of content in a short amount of time</li>
+          <li>Fun, energetic, and effortless on set — always</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREW -->
+  <section id="crew">
+    <p class="section-eyebrow">The Crew</p>
+    <h2 class="section-title reveal">MEET THE<br/>LEGENDS.</h2>
+    <p class="section-sub reveal">A collective of talented creatives ready to bring your vision to life — from every angle.</p>
+    <div class="crew-grid">
+      <div class="crew-card reveal">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80" loading="lazy" alt="Bridget Farhat">
+        <div class="crew-info">
+          <div class="crew-name">BRIDGET FARHAT</div>
+          <div class="crew-role">Founder · Creative Director</div>
+        </div>
+      </div>
+      <div class="crew-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=400&q=80" loading="lazy" alt="Surf Ford">
+        <div class="crew-info">
+          <div class="crew-name">SURF FORD</div>
+          <div class="crew-role">Videographer · Editor</div>
+        </div>
+      </div>
+      <div class="crew-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&q=80" loading="lazy" alt="Josh Timpany">
+        <div class="crew-info">
+          <div class="crew-name">JOSH TIMPANY</div>
+          <div class="crew-role">Videographer · Editor</div>
+        </div>
+      </div>
+      <div class="crew-card reveal reveal-delay-3">
+        <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?w=400&q=80" loading="lazy" alt="Kat Thompson">
+        <div class="crew-info">
+          <div class="crew-name">KAT THOMPSON</div>
+          <div class="crew-role">Photographer · Videographer</div>
+        </div>
+      </div>
+      <div class="crew-card reveal reveal-delay-4">
+        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80" loading="lazy" alt="Chloe Busch">
+        <div class="crew-info">
+          <div class="crew-name">CHLOE BUSCH</div>
+          <div class="crew-role">Videographer · Editor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section id="clients">
+    <p class="section-eyebrow">Brands & Partners</p>
+    <h2 class="section-title reveal">TRUSTED BY<br/>LEGENDS IN THE MAKING.</h2>
+    <p class="section-sub reveal" style="margin:0 auto;">A growing list of brands and creators who chose to make their content legendary.</p>
+    <div class="clients-grid">
+      <div class="client-tile reveal"><span>FIRST LIGHT</span></div>
+      <div class="client-tile reveal reveal-delay-1"><span>SHOLA RICHARDS</span></div>
+      <div class="client-tile reveal reveal-delay-2"><span>TAP SHACK</span></div>
+      <div class="client-tile reveal reveal-delay-3"><span>URBODY</span></div>
+      <div class="client-tile reveal reveal-delay-4"><span>EVAN HAUTH</span></div>
+      <div class="client-tile reveal"><span>MXD SGNLS</span></div>
+    </div>
+  </section>
+
+  <!-- MERCH -->
+  <section id="merch" style="background:var(--black);text-align:center;padding:100px 48px;">
+    <p class="section-eyebrow">Official Merch</p>
+    <h2 class="section-title reveal">REP THE<br/><span style="color:var(--accent)">LEGENDS</span></h2>
+    <p class="section-sub reveal" style="margin:0 auto 48px;">
+      Premium print-on-demand apparel for creators, clients, and fans of Creative Legends Co. — tees, hoodies, hats, and more.
+    </p>
+    <a href="https://automatedmerch.onrender.com/creative-legends/shop" class="btn-primary reveal" style="font-size:15px;padding:20px 52px;letter-spacing:3px;">
+      Shop Merch →
+    </a>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section id="testimonial">
+    <blockquote class="testimonial-quote reveal">
+      "I'VE WORKED WITH TONS OF PHOTOGRAPHERS AND VIDEOGRAPHERS AND THERE IS NO ONE LIKE BRIDGET. SHE CAN CAPTURE THE EMOTION OF WHATEVER'S GOING ON."
+    </blockquote>
+    <p class="testimonial-attr reveal">— Brianna Rose · Embodiment + Business Coach</p>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section id="contact">
+    <p class="section-eyebrow" style="text-align:center;">Ready to Create Something?</p>
+    <h2 class="section-title reveal">LEAVE YOUR<br/>LEGACY.</h2>
+    <p class="section-sub reveal" style="text-align:center;">
+      Time to shine a spotlight on your epic story. Partner with us for content that's not just memorable — but downright legendary.
+    </p>
+    <a href="mailto:hello@creativelegendsco.com" class="contact-email reveal">
+      HELLO@CREATIVELEGENDSCO.COM
+    </a>
+    <div style="text-align:center;" class="reveal">
+      <a href="#contact" class="btn-primary">Book a Session →</a>
+    </div>
+    <div class="social-links reveal" style="margin-top:64px;">
+      <a href="https://www.instagram.com/creativelegends.co/" target="_blank" rel="noopener" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @creativelegends.co
+      </a>
+      <a href="https://automatedmerch.onrender.com/creative-legends/shop" class="social-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4v2l8 5 8-5V4zm0 4.236l-8 5-8-5V18h16V8.236z"/></svg>
+        Merch Store
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">CREATIVE LEGENDS CO.</span>
+    <span class="footer-copy">© 2026 Creative Legends Co. All rights reserved.</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
