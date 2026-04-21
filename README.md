@@ -26,5 +26,5 @@ Merch store lives at `automatedmerch.onrender.com/creative-legends/shop` — a s
 
 ## Contact
 
-Site owner: Bridget Farhat — hello@creativelegendsco.com
+Site owner: Bridget Farhat — Bridget@bridgetfarhat.com
 Platform help: Bernardo — bernardo8605@gmail.com
